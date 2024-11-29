@@ -1,16 +1,15 @@
 import sys
 from random import randint
-from PyQt6 import uic
 
-
+from ui import Ui_Form
 from PyQt6.QtGui import QPainter, QColor
 from PyQt6.QtWidgets import QWidget, QApplication
 
 
-class Example(QWidget):
+class Example(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.do_paint = False
         self.btn.clicked.connect(self.paint)
 
@@ -30,8 +29,9 @@ class Example(QWidget):
         d = randint(0, 300)
         x = randint(100, 150)
         y = randint(100, 150)
-        qp.setBrush(QColor(255, 255, 0))
-        qp.setPen(QColor(255, 255, 0))
+        a, b, c = randint(0, 255), randint(0, 255), randint(0, 255)
+        qp.setBrush(QColor(a, b, c))
+        qp.setPen(QColor(a, b, c))
         qp.drawEllipse(x, y, x + d, y + d)
 
 
